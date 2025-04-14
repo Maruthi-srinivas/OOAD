@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telecom Billing System</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Preloader Section -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="/images/logo.png" alt="Telecom Billing Logo" class="logo">
+            <p class="tagline">Simplifying Telecom for You</p>
+            <div class="loading-animation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" style="display: none;">
+        <header>
+            <nav class="navbar">
+                <div class="logo">Telecom Billing</div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <!-- <li><a href="/register">Register</a></li> -->
+                    <li><a href="/plans">Plans</a></li>
+                    <li><a href="/bills">Bills</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/logout" class="btn-login">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Welcome to Telecom Billing System</h1>
+            <p>Manage your telecom plans, bills, and subscriptions with ease.</p>
+            <div class="hero-buttons">
+                <a href="/register" class="btn">Get Started</a>
+                <a href="/plans" class="btn btn-secondary">View Plans</a>
+            </div>
+        </section>
+
+        <section class="bills">
+            <h2>Your Bills</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bill ID</th>
+                        <th>Plan Name</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="bill : ${bills}">
+                        <td th:text="${bill.id}">1</td>
+                        <td th:text="${bill.plan.name}">Plan A</td>
+                        <td th:text="${bill.amount}">$50.00</td>
+                        <td th:text="${bill.status}">Pending</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="plans">
+            <h2>Available Plans</h2>
+            <div class="plan-cards">
+                <div th:each="plan : ${plans}" class="card">
+                    <h3 th:text="'Plan Name: ' + ${plan.name}">Plan Name</h3>
+                    <p><strong>Plan ID:</strong> <span th:text="${plan.id}">XX</span></p>
+                    <p><strong>Price:</strong> $<span th:text="${plan.price}">XX</span>/month</p>
+                    <p th:text="${plan.description}">Plan Description</p>
+                    <a th:href="'/bills/create?planId=' + ${plan.id} + '&amount=' + ${plan.price}" class="btn">Subscribe</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <h2>Why Choose Us?</h2>
+            <div class="feature-cards">
+                <div class="card">
+                    <h3>Easy Management</h3>
+                    <p>Track and manage your telecom bills and plans effortlessly.</p>
+                </div>
+                <div class="card">
+                    <h3>Secure Payments</h3>
+                    <p>Make secure and hassle-free payments for your bills.</p>
+                </div>
+                <div class="card">
+                    <h3>24/7 Support</h3>
+                    <p>Our team is here to assist you anytime, anywhere.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call-to-Action Section 
+        <section class="cta">
+            <h2>Ready to Simplify Your Telecom Experience?</h2>
+            <a href="/register" class="btn">Sign Up Now</a>
+        </section>-->
+
+        <footer>
+            <p>&copy; 2025 Telecom Billing System. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

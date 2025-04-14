@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Telecom Billing</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/bills">Bills</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="payment">
+        <h2>Payment</h2>
+        <p><strong>Bill ID:</strong> <span th:text="${bill.id}">1</span></p>
+        <p><strong>Plan Name:</strong> <span th:text="${bill.plan.name}">Plan A</span></p>
+        <p><strong>Amount:</strong> $<span th:text="${bill.amount}">50.00</span></p>
+        <div class="qr-code">
+            <img src="/images/qr-code.png.jpg" alt="QR Code for Payment">
+        </div>
+        <form action="/bills/payment" method="POST">
+            <input type="hidden" name="billId" th:value="${bill.id}">
+            <button type="submit" class="btn">Confirm Payment</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Telecom Billing System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
