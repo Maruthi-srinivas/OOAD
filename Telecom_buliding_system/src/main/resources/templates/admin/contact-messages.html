@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Contact Messages</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Add your CSS links here -->
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Telecom Billing</div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/register">Register</a></li>
+                <li><a href="/plans">Plans</a></li>
+                <li><a href="/bills">Bills</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                <li><a href="/logout" class="btn-login">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="bills">
+        <h2>Contact Messages</h2>
+    
+        <div th:if="${messages.empty}" style="text-align: center;">
+            <p>No messages found.</p>
+        </div>
+    
+        <div th:if="${!messages.empty}">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Message</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="message : ${messages}">
+                        <td th:text="${message.name}"></td>
+                        <td th:text="${message.email}"></td>
+                        <td th:text="${message.message}"></td>
+                        <td th:text="${#dates.format(message.submittedAt, 'yyyy-MM-dd HH:mm')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+</html>
